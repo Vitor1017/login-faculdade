@@ -1,0 +1,11 @@
+abrir powershell 
+
+pip install mouseinfo
+
+python
+
+from mouseinfo import mouseInfo
+
+mouseInfo()
+
+desmarca opcao 3 sec.button delay
