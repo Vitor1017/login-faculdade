@@ -21,7 +21,7 @@ for _ in range(5):            # permite aperta tab 5 vezes
 
 time.sleep(2) 
 
-pyautogui.write("CFF")
+pyautogui.write("CPF")
 pyautogui.press("tab")
 pyautogui.write("SENHA")
 
