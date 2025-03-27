@@ -1,34 +1,47 @@
-import pyautogui                    
-import subprocess
-import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from time import sleep
 
-url_site = "https://www.colaboraread.com.br/login/auth" 
+# Inicializa o driver do Chrome
+driver = webdriver.Chrome()
 
-# Abrir o Chrome diretamente com a URL desejada
+try:
+    # Maximiza a janela do navegador
+    driver.maximize_window()
 
-subprocess.run(r"C:\Program Files\Google\Chrome\Application\chrome.exe")
+    # Abre a página de login
+    driver.get('https://www.colaboraread.com.br/login/auth')
+    sleep(5)
 
-time.sleep(2)  # Espera o navegador abrir e a página carregar
-pyautogui.write(url_site)
+    # Preenche o campo de usuário
+    campo_usuario = driver.find_element(By.XPATH, "//input[@id='username']")
+    campo_usuario.send_keys('**********') # só colocar seu usuario AVA
+    sleep(2)
 
-time.sleep(2) 
-pyautogui.press("enter")
+    # Preenche o campo de senha
+    campo_senha = driver.find_element(By.XPATH, "//input[@name='password']")
+    campo_senha.send_keys('************') # só colocar sua senha AVA
+    sleep(2)
 
-pyautogui.hotkey('win', 'up') # maximizar o navegador 
+    # Clica no botão de login
+    botao_login = driver.find_element(By.XPATH, "//button[@class='btn btn-primary btn-lg btn-block mb-10']")
+    botao_login.click()
+    sleep(5)  # Aguarda o carregamento da próxima página
 
-for _ in range(5):            # permite aperta tab 5 vezes
-    pyautogui.press("tab") 
+    # Clica no botão do curso 
+    botao_curso = driver.find_element(By.XPATH, "//button[@class='btn btn-primary entrar']")
+    botao_curso.click()
+    sleep(5)  # Aguarda o carregamento da próxima página
 
-time.sleep(2) 
+    # Mantém o navegador aberto até que o usuário pressione Enter
+    input("Pressione Enter para fechar o navegador...")
 
-pyautogui.write("CPF")
-pyautogui.press("tab")
-pyautogui.write("SENHA")
+except Exception as e:
+    print(f"Ocorreu um erro: {e}")
 
-pyautogui.press("enter")
-
-pyautogui.click(957,950, duration=1.5)   # coordenada do OK 
-pyautogui.click(551,636, duration=1.5)   # coordenada do enter 
+finally:
+    # Fecha o navegador
+    driver.quit()
 
 
 
