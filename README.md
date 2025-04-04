@@ -26,4 +26,5 @@ ChromeDriver (Navegador controlado)
 
 📬 Contato
 ✉️ Vitor Miranda
+✉️ Email: vitor.alves.miranda@hotmail.com
 🔗 linkedin.com/in/vitor-miranda-b38644300
